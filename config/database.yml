@@ -30,7 +30,7 @@ development:
 
   # Add secundary credentials for another user
   user: postgres
-  password: 123456
+  password: microverse
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -68,6 +68,10 @@ test:
   host: localhost
   user: postgres
   password: 7410
+
+  # Add secundary credentials for another user
+  user: postgres
+  password: microverse
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
