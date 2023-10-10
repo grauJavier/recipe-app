@@ -1,0 +1,32 @@
+<!-- FILEPATH: /home/ruth/5module/4week/recipe-app/app/views/layouts/_navbar.html.erb -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Recipe App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Recipes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Public Recipes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Food</a>
+            </li>            
+            <li class="nav-item">
+                <a class="nav-link" href="#">Shopping List</a>
+            </li>
+            <% if user_signed_in? %>
+                <li class="nav-item">
+                    <%= link_to 'Exit session', destroy_user_session_path, data: { turbo_method: :delete } %>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+</nav>
