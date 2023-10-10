@@ -80,6 +80,7 @@ group :development do
 
   # HTML
   gem 'hamlit-rails'
+  gem 'htmlbeautifier'
 end
 
 group :test do

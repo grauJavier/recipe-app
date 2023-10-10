@@ -13,3 +13,41 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  background-color: #fff;
+}
+
+.body-max-width {
+  max-width: 1300px !important;
+}
+
+.button-list small {
+  font-size: 0.8em;
+}
+
+.button-list:hover p {
+  text-decoration: underline;
+}
+
+.button-list:hover i {
+  color: #fde155;
+}
+
+.btn-primary,
+.dropdown-menu a:active {
+  border: 0 !important;
+  background-color: #f87d7f !important;
+}
+
+.btn-primary:active {
+  background-color: #d76d6f !important;
+}
+
+.card-header:hover small {
+  display: flex !important;
+}
+
+.card-header:hover small:hover a:hover {
+  text-decoration: underline !important;
+}
