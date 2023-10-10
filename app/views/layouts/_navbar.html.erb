@@ -1,32 +1,39 @@
 <!-- FILEPATH: /home/ruth/5module/4week/recipe-app/app/views/layouts/_navbar.html.erb -->
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Recipe App</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Recipes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Public Recipes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Food</a>
-            </li>            
-            <li class="nav-item">
-                <a class="nav-link" href="#">Shopping List</a>
-            </li>
-            <% if user_signed_in? %>
-                <li class="nav-item">
-                    <%= link_to 'Exit session', destroy_user_session_path, data: { turbo_method: :delete } %>
-                </li>
-            <% end %>
+<div class="bg-light d-flex justify-content-center px-5 border-bottom">
+  <nav class="navbar navbar-expand-lg navbar-light d-flex w-100 body-max-width">
+    <%= image_tag('logo.png', alt: 'Recipe App Logo', size: '50x50', class: 'me-3') %>
+    <ul class="navbar-nav gap-4 flex-row justify-self-start">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Public Recipes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">My Recipes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Food</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Shopping List</a>
+      </li>
+      <%# <% if user_signed_in? %>
+      <%#    <li class="nav-item">
+                        <%= link_to 'Exit session', destroy_user_session_path, data: { turbo_method: :delete } %>
+      <%#    </li>
+                <% end %>
+    </ul>
+    <div class="justify-self-end ms-auto d-flex align-items-center gap-2">
+      <li class="nav-item dropdown list-unstyled">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Mercedez Sosa
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i> Log out</a></li>
         </ul>
+      </li>
+      <%= image_tag("https://i.pravatar.cc/50?img=0", alt: 'Recipe App Logo', size: '50x50', class: 'rounded-circle bg-white border p-1') %>
     </div>
-</nav>
+  </nav>
+</div>
