@@ -1,4 +1,6 @@
 class RecipeFoodsController < ApplicationController
+  before_action :authenticate_user!
+
   # GET /recipe_foods/new
   def new
     @recipe_food = RecipeFood.new
