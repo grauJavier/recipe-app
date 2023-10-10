@@ -7,6 +7,9 @@
 # Local files
 PR/
 
+# To avoid conflicts with DB credentials
+config/database.yml
+
 # Linters in the local environment
 node_modules/
 
