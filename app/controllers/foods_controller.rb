@@ -1,6 +1,6 @@
 class FoodsController < ApplicationController
   before_action :authenticate_user!
-  
+
   # GET /foods
   def index
     # Get all the food objects from the database
