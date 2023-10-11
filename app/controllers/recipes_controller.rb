@@ -8,10 +8,10 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find_by(id: params[:id])
 
-    if @recipe.nil?
-      flash[:error] = 'Recipe not found'
-      redirect_to recipes_path
-    end
+    return unless @recipe.nil?
+
+    flash[:error] = 'Recipe not found'
+    redirect_to recipes_path
   end
 
   def public_recipe

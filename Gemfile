@@ -79,9 +79,9 @@ group :development do
   # gem "spring"
 
   # HTML
+  gem 'faker'
   gem 'hamlit-rails'
   gem 'htmlbeautifier'
-  gem 'faker'
 end
 
 group :test do
