@@ -15,14 +15,17 @@ class FoodsController < ApplicationController
 
   # POST /foods
   def create
-    # If the food already exists in the database with the same name, measurement_unit, price and
-    # created by the current user then update the quantity otherwise create a new food object
-    @food = Food.find_or_create_by(name: params[:food][:name], measurement_unit: params[:food][:measurement_unit], price: params[:food][:price], user_id: current_user.id)
+    # If the food already exists with the same name, measurement_unit, price and created by same user
+    # update the quantity otherwise create a new food object
+    @food = Food.find_or_create_by(
+      name: params[:food][:name],
+      measurement_unit: params[:food][:measurement_unit],
+      price: params[:food][:price],
+      user_id: current_user.id
+    )
     # Update the quantity of the food object
     @food.quantity += params[:food][:quantity].to_i
-    # If the food object is saved to the database
     if @food.save
-      # Redirect to the foods page
       redirect_to foods_path
     else
       # Otherwise, render the new food form again
