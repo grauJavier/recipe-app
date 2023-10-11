@@ -22,8 +22,12 @@ body {
   max-width: 1300px !important;
 }
 
-.button-list small {
+small, .small {
   font-size: 0.8em;
+}
+
+abbr[title] {
+  display: none !important;
 }
 
 .button-list:hover p {
