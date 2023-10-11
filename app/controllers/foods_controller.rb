@@ -4,7 +4,7 @@ class FoodsController < ApplicationController
   # GET /foods
   def index
     # Get all the food objects from the database
-    @foods = Food.all
+    @foods = current_user.foods
   end
 
   # GET /foods/:id
