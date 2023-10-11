@@ -23,60 +23,21 @@ class RecipesController < ApplicationController
   end
 
   def general_shopping_list
-    # Current user recipes
-    @user_recipes = current_user.recipes
     # Current user food
     @user_foods = current_user.foods
-    # total amount to spend on the purchase
-    @total_price = 0
-    # total number of items to buy
-    @total_items = 0
-    # Current user shopping list
-    @shopping_list = []
-    # If user have recipes and food items start the process
+    # Current user recipes
+    @user_recipes = current_user.recipes.includes(:foods).where.not(foods: { id: nil })
+
+    # If user have recipes and food generate the shopping list
     if @user_recipes.any? && @user_foods.any?
-      # Iterate over the recipes
-      @user_recipes.each do |recipe|
-        # Iterate over the ingredients
-        recipe.foods.each do |ingredient|
-          # If user has the ingredient
-          if @user_foods.include?(ingredient)
-            # Get both quantities
-            recipe_quantity = recipe.recipe_foods.find_by(food_id: ingredient.id).quantity
-            available_quantity = @user_foods.find_by(id: ingredient.id).quantity
-
-            # If there is less than needed for the recipe
-            if available_quantity < recipe_quantity
-              needed_quantity = recipe_quantity - available_quantity
-
-              @shopping_list << {
-                food: ingredient,
-                quantity: needed_quantity,
-                price: ingredient.price * needed_quantity
-              }
-              # Add the price to spend to the total amount to spend
-              @total_price += ingredient.price * needed_quantity
-              # Add 1 more item to the total number of items to buy
-              @total_items += 1
-            end
-
-          else
-            # If user doesn't have the food item
-            @shopping_list << {
-              food: ingredient,
-              quantity: recipe_quantity,
-              price: ingredient.price * recipe_quantity
-            }
-            # Add the price to spend to the total amount to spend
-            @total_price += ingredient.price * recipe_quantity
-            # Add 1 more item to the total number of items to buy
-            @total_items += 1
-          end
-        end
-      end
+      @shopping_list = generate_general_shopping_list(@user_foods, @user_recipes)
+      # total amount to spend on the purchase
+      @total_price = @shopping_list.sum { |item| item[:price] }
+      # total number of items to buy
+      @total_items = @shopping_list.sum { |item| item[:quantity] }
     else
       # If there's no recipes and food items show a message and redirect to the recipes page
-      flash[:error] = 'You need at least one recipe and at least one ingredient related to the recipe in order to generate a shopping list.'
+      flash[:error] = 'You need at least one recipe with ingredients to generate a shopping list.'
       redirect_to recipes_path
     end
   end
@@ -88,6 +49,47 @@ class RecipesController < ApplicationController
   end
 
   private
+
+  # method to generate the shopping list
+  def generate_general_shopping_list(user_foods, user_recipes)
+    @user_foods = user_foods
+    @user_recipes = user_recipes
+    # Current user shopping list
+    @shopping_list = []
+    # Iterate over the recipes
+    @user_recipes.each do |recipe|
+      # Iterate over the ingredients
+      recipe.foods.each do |ingredient|
+        # Get both quantities
+        recipe_quantity = recipe.recipe_foods.find_by(food_id: ingredient.id).quantity
+        available_quantity = @user_foods.find_by(id: ingredient.id).quantity
+
+        # If user has the ingredient
+        if @user_foods.include?(ingredient)
+          # If there is less than needed for the recipe
+          if available_quantity < recipe_quantity
+            needed_quantity = recipe_quantity - available_quantity
+            @shopping_list << generated_shopping_list_item(ingredient, needed_quantity)
+          end
+
+        else
+          # If user doesn't have the food item
+          @shopping_list << generated_shopping_list_item(ingredient, recipe_quantity)
+        end
+      end
+    end
+    # Send the shopping list
+    @shopping_list
+  end
+
+  # method to generate the shopping list object
+  def generated_shopping_list_item(ingredient, needed_quantity)
+    {
+      food: ingredient,
+      quantity: needed_quantity,
+      price: ingredient.price * needed_quantity
+    }
+  end
 
   def recipe_params
     params.require(:recipe).permit(:name, :ingredients, :cook_time)
