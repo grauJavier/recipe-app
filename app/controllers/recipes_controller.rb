@@ -7,6 +7,11 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find_by(id: params[:id])
+
+    if @recipe.nil?
+      flash[:error] = 'Recipe not found'
+      redirect_to recipes_path
+    end
   end
 
   def public_recipe
@@ -18,8 +23,19 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.create(recipe_params)
-    redirect_to recipe_path(@recipe)
+    @recipe = current_user.recipes.build(recipe_params)
+    if @recipe.save
+      redirect_to recipes_index_path, notice: 'Recipe was successfully created.'
+    else
+      render 'new', alert: 'Food was not created.'
+    end
+  end
+
+  def destroy
+    @recipe = Recipe.find_by(id: params[:id])
+    RecipeFood.where(recipe_id: @recipe.id).destroy_all
+    @recipe.destroy
+    redirect_to recipes_path
   end
 
   private

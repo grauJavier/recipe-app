@@ -40,14 +40,8 @@ class FoodsController < ApplicationController
   # DELETE /foods/:id
   def destroy
     @food = Food.find(params[:id])
-
-    # Remove references to the food in the recipe_foods table
     RecipeFood.where(food_id: @food.id).destroy_all
-
-    # Delete the food object from the database
     @food.destroy
-
-    # Redirect to the foods page
     redirect_to foods_path
   end
 
