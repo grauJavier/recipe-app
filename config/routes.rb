@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
 
-  root "home#index"
+  root "home#index", as: "home"
   resources :users, only: %i[index show new create destroy]
   resources :recipes, only: %i[index show new create destroy]
   get '/public_recipe', to: 'recipes#public_recipe', as: 'public_recipe'
