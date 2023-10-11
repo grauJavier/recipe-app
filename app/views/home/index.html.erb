@@ -31,16 +31,8 @@
             <small class="text-secondary">20 hours ago</small>
             <p class="m-0">Some food title</p>
           </div>
-        </button><button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
-                        onclick="window.location.href='<%= root_path %>'" 
-                        onmouseover="changeIconClass(this, 'bi-star', 'bi-star-fill')"
-                        onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
-          <i class="bi bi-star align-self-center fs-5"></i>
-          <div class="d-flex flex-column">
-            <small class="text-secondary">20 hours ago</small>
-            <p class="m-0">Some food title</p>
-          </div>
-        </button><button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
+        </button>
+        <button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
                         onclick="window.location.href='<%= root_path %>'" 
                         onmouseover="changeIconClass(this, 'bi-star', 'bi-star-fill')"
                         onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
@@ -83,16 +75,8 @@
             <small class="text-secondary">20 hours ago</small>
             <p class="m-0">Some food title</p>
           </div>
-        </button><button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
-                        onclick="window.location.href='<%= root_path %>'" 
-                        onmouseover="changeIconClass(this, 'bi-star', 'bi-star-fill')"
-                        onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
-          <i class="bi bi-star align-self-center fs-5"></i>
-          <div class="d-flex flex-column">
-            <small class="text-secondary">20 hours ago</small>
-            <p class="m-0">Some food title</p>
-          </div>
-        </button><button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
+        </button>
+        <button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
                         onclick="window.location.href='<%= root_path %>'" 
                         onmouseover="changeIconClass(this, 'bi-star', 'bi-star-fill')"
                         onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
@@ -114,7 +98,7 @@
       <div class="card-header d-flex flex-row justify-content-between">
         <div class="d-flex align-items-center">
           <i class="bi bi-cookie me-2 fs-4"></i>
-          <h5 class="m-0">Food Inventory</h5>
+          <h5 class="m-0">New to the Food Inventory</h5>
         </div>
         <small class="d-none gap-2">
           <%= link_to "View all", root_path, class:"text-decoration-none text-secondary align-self-center" %>
@@ -154,6 +138,6 @@
         </button>
       </div>
     </div>
-    <%= link_to "+ Add New", root_path, class: "btn btn-primary mt-2 ms-auto" %>
+    <%= link_to "+ Add New", new_food_path, class: "btn btn-primary mt-2 ms-auto" %>
   </div>
 </div>
