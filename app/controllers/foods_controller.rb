@@ -3,22 +3,8 @@ class FoodsController < ApplicationController
 
   # GET /foods
   def index
-    # Get all the food objects from the database
-    @foods = Food.all
-  end
-
-  # GET /foods/:id
-  def show
-    # Find the food object with the given id
-    @food = Food.find_by_id(params[:id])
-
-    # If the food object is not found
-    return unless @food.nil?
-
-    # Set an error message
-    flash[:error] = 'Food not found'
-    # Redirect to the foods page
-    redirect_to foods_path
+    # Get all the food objects from the database that belong to the current user
+    @foods = current_user.foods
   end
 
   # GET /foods/new
@@ -29,12 +15,15 @@ class FoodsController < ApplicationController
 
   # POST /foods
   def create
-    # Create a new food object with the given params
-    @food = Food.new(food_params)
+    # If the food already exists in the database with the same name, measurement_unit, price and
+    # created by the current user then update the quantity otherwise create a new food object
+    @food = Food.find_or_create_by(name: params[:food][:name], measurement_unit: params[:food][:measurement_unit], price: params[:food][:price], user_id: current_user.id)
+    # Update the quantity of the food object
+    @food.quantity += params[:food][:quantity].to_i
     # If the food object is saved to the database
     if @food.save
-      # Redirect to the food's page
-      redirect_to @food
+      # Redirect to the foods page
+      redirect_to foods_path
     else
       # Otherwise, render the new food form again
       render 'new'
