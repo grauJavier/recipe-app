@@ -51,3 +51,7 @@ body {
 .card-header:hover small:hover a:hover {
   text-decoration: underline !important;
 }
+
+.dropdown-menu[data-bs-popper] {
+  left: -33px !important;
+}
