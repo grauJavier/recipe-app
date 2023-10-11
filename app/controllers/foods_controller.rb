@@ -29,25 +29,31 @@ class FoodsController < ApplicationController
 
   # POST /foods
   def create
-    # Create a new food object with the given params
-    @food = Food.new(food_params)
-    # If the food object is saved to the database
+    @food = current_user.foods.build(food_params)
     if @food.save
-      # Redirect to the food's page
-      redirect_to @food
+      redirect_to foods_index_path, notice: 'Food was successfully created.'
     else
-      # Otherwise, render the new food form again
-      render 'new'
+      render 'new', alert: 'Food was not created.'
     end
   end
 
   # DELETE /foods/:id
   def destroy
-    # Find the food object with the given id
     @food = Food.find(params[:id])
+
+    # Remove references to the food in the recipe_foods table
+    RecipeFood.where(food_id: @food.id).destroy_all
+
     # Delete the food object from the database
     @food.destroy
+
     # Redirect to the foods page
     redirect_to foods_path
+  end
+
+  private
+
+  def food_params
+    params.require(:food).permit(:name, :measurement_unit, :price, :quantity)
   end
 end

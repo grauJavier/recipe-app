@@ -1,0 +1,34 @@
+<%# app/views/food/index.html.erb %>
+<div class="card body-max-width mx-auto mt-5 pb-0">
+  <div class="card-header d-flex flex-row justify-content-between">
+    <div class="d-flex align-items-center">
+          <i class="bi bi-cookie me-2 fs-4"></i>
+          <h4 class="m-0">Food Inventory</h4>
+        </div>
+  </div>
+  <table class="table mb-0 rounded-bottom">
+    <thead>
+      <tr>
+        <th class="bg-pink text-white fw-normal">Food</th>
+        <th class="bg-pink text-white fw-normal">Measurement Unit</th>
+        <th class="bg-pink text-white fw-normal">Quantity</th>
+        <th class="bg-pink text-white fw-normal">Unit Price</th>
+        <th class="bg-pink text-white fw-normal">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="rounded-bottom">
+      <% @foods.each do |food| %>
+        <tr>
+          <td><%= food.name %></td>
+          <td><%= food.measurement_unit %></td>
+          <td><%= food.quantity %></td>
+          <td><%= number_to_currency(food.price) %></td>
+          <td>
+            <%= button_to 'Delete', food, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<%= link_to 'New Food', new_food_path, class: 'btn btn-primary' %>

@@ -25,7 +25,7 @@ class Recipe < ApplicationRecord
 
   scope :public_recipes, -> { where(public: true) }
   scope :private_recipes, -> { where(public: false) }
-  scope :by_user, ->(user_id) { where(user_id:) }
+  scope :by_user, ->(user_id) { where(user_id: user_id) }
   scope :by_food, ->(food_id) { joins(:foods).where(foods: { id: food_id }) }
 
   def self.search(search)

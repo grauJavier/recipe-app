@@ -22,7 +22,8 @@ body {
   max-width: 1300px !important;
 }
 
-small, .small {
+small,
+.small {
   font-size: 0.8em;
 }
 
@@ -36,6 +37,10 @@ abbr[title] {
 
 .button-list:hover i {
   color: #fde155;
+}
+
+.bg-pink {
+  background-color: #f87d7f !important;
 }
 
 .btn-primary,

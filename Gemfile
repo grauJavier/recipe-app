@@ -81,6 +81,7 @@ group :development do
   # HTML
   gem 'hamlit-rails'
   gem 'htmlbeautifier'
+  gem 'faker'
 end
 
 group :test do

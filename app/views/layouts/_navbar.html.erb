@@ -4,7 +4,7 @@
     <%= image_tag('logo.png', alt: 'Recipe App Logo', size: '50x50', class: 'me-3') %>
     <ul class="navbar-nav gap-4 flex-row justify-self-start">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
+        <%= link_to "Home", home_index_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Public Recipes</a>
@@ -13,7 +13,7 @@
         <a class="nav-link" href="#">My Recipes</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Food</a>
+        <%= link_to "Food", foods_index_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Shopping List</a>
