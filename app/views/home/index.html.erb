@@ -21,8 +21,8 @@
                             onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
                 <i class="bi bi-star align-self-center fs-5"></i>
                 <div class="d-flex flex-column">
-                  <small class="text-secondary"><i class="bi bi-clock-history"></i> <%= time_ago_in_words(recipe.created_at) %> ago</small>
                   <h6 class="m-0"><%= recipe.name %></h6>
+                  <small class="text-secondary"><i class="bi bi-clock-history"></i> <%= time_ago_in_words(recipe.created_at) %> ago</small>
                 </div>
               </button>
             <% end %>
@@ -54,8 +54,8 @@
               onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
                 <i class="bi bi-star align-self-center fs-5"></i>
                 <div class="d-flex flex-column">
-                  <small class="text-secondary"><i class="bi bi-clock-history"></i> <%= time_ago_in_words(recipe.created_at) %> ago</small>
                   <h6 class="m-0"><%= recipe.name %></h6>
+                  <small class="text-secondary"><i class="bi bi-clock-history"></i> <%= time_ago_in_words(recipe.created_at) %> ago</small>
                 </div>
               </button>
             <% end %>
