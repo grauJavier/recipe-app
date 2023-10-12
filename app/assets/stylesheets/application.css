@@ -40,7 +40,7 @@ a.card-title:hover {
   text-decoration: underline !important;
 }
 
-.button-list:hover i {
+.button-list:hover i.bi-star-fill {
   color: #fde155;
 }
 
@@ -82,4 +82,13 @@ a.card-title:hover {
 
 .fade-in {
   opacity: 1;
-};
+}
+
+div.recipe-card {
+  min-height: 6em !important;
+}
+
+.form-check-input {
+  background-color: #f87d7f !important;
+  border-color: #f87d7f !important;
+}

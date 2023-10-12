@@ -10,7 +10,7 @@
     <div class="w-75 mx-auto my-3 d-flex flex-column gap-3">
       <% if @recipes.any? %>
         <% @recipes.each do |recipe| %>
-          <div class="card flex-row gap-2">
+          <div class="card flex-row gap-2 recipe-card">
             <div class="col-3 bg-light border-end rounded-start p-3">
               <h5><%= link_to recipe.name, recipe, class: 'card-title text-decoration-none' %></h5>
               <%= button_to 'Delete', recipe, method: :delete, class: 'btn btn-outline-secondary px-4 py-1' %>

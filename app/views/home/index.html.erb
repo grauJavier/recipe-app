@@ -1,66 +1,70 @@
 <div class="d-flex justify-content-center py-5 body-max-width m-auto gap-5">
   <div class="d-flex flex-column gap-5 w-100">
-    <div class="card">
-      <div class="card-header d-flex flex-row justify-content-between">
-        <div class="d-flex align-items-center">
-          <i class="bi bi-book me-2 fs-4"></i>
-          <h5 class="m-0">Latest Public Recipes</h5>
+    <div>
+      <div class="card">
+        <div class="card-header d-flex flex-row justify-content-between">
+          <div class="d-flex align-items-center">
+            <i class="bi bi-book me-2 fs-4"></i>
+            <h5 class="m-0">Latest Public Recipes</h5>
+          </div>
+          <small class="d-none gap-2">
+            <%= link_to "View all", public_recipe_path, class:"text-decoration-none text-secondary align-self-center" %>
+            <i class="bi bi-box-arrow-up-right text-secondary align-self-center"></i>
+          </small>
         </div>
-        <small class="d-none gap-2">
-          <%= link_to "View all", root_path, class:"text-decoration-none text-secondary align-self-center" %>
-          <i class="bi bi-box-arrow-up-right text-secondary align-self-center"></i>
-        </small>
-      </div>
-      <div class="list-group list-group-flush">
-        <% if @lastest_public_recipes != [] %>
-          <% @lastest_public_recipes.each do |recipe| %>
-            <button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
-                            onclick="window.location.href='<%= root_path %>'" 
+        <div class="list-group list-group-flush">
+          <% if @lastest_public_recipes != [] %>
+            <% @lastest_public_recipes.each do |recipe| %>
+              <button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
+                            onclick="window.location.href='<%= recipe_path(recipe) %>'" 
                             onmouseover="changeIconClass(this, 'bi-star', 'bi-star-fill')"
                             onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
-              <i class="bi bi-star align-self-center fs-5"></i>
-              <div class="d-flex flex-column">
-                <small class="text-secondary">20 hours ago</small>
-                <p class="m-0"><%= recipe.name %></p>
-              </div>
-            </button>
+                <i class="bi bi-star align-self-center fs-5"></i>
+                <div class="d-flex flex-column">
+                  <small class="text-secondary"><i class="bi bi-clock-history"></i> <%= time_ago_in_words(recipe.created_at) %> ago</small>
+                  <h6 class="m-0"><%= recipe.name %></h6>
+                </div>
+              </button>
+            <% end %>
+          <% else %>
+            <p class="text-center my-2">There is no public recipe yet.</p>
           <% end %>
-        <% else %>
-          <p class="text-center">You don't have any public recipe yet.</p>
-          <%= link_to "Do you want to add a new one?", new_recipe_path, class:"btn btn-primary w-100" %>
-        <% end %>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header d-flex flex-row justify-content-between">
-        <div class="d-flex align-items-center">
-          <i class="bi bi-journal me-2 fs-4"></i>
-          <h5 class="m-0">Your Latest Recipes</h5>
         </div>
-        <small class="d-none gap-2">
-          <%= link_to "View all", root_path, class:"text-decoration-none text-secondary align-self-center" %>
-          <i class="bi bi-box-arrow-up-right text-secondary align-self-center"></i>
-        </small>
       </div>
-      <div class="list-group list-group-flush">
-        <% if @user_lastest_recipes != [] %>
-          <% @user_lastest_recipes.each do |recipe| %>
-            <button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
-              onclick="window.location.href='<%= root_path %>'" 
+      <%= link_to "+ Add New Recipe", new_recipe_path, class:"btn btn-primary float-end mt-2" %>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-header d-flex flex-row justify-content-between">
+          <div class="d-flex align-items-center">
+            <i class="bi bi-journal me-2 fs-4"></i>
+            <h5 class="m-0">Your Latest Recipes</h5>
+          </div>
+          <small class="d-none gap-2">
+            <%= link_to "View all", recipes_path, class:"text-decoration-none text-secondary align-self-center" %>
+            <i class="bi bi-box-arrow-up-right text-secondary align-self-center"></i>
+          </small>
+        </div>
+        <div class="list-group list-group-flush">
+          <% if @user_lastest_recipes != [] %>
+            <% @user_lastest_recipes.each do |recipe| %>
+              <button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
+              onclick="window.location.href='<%= recipe_path(recipe) %>'" 
               onmouseover="changeIconClass(this, 'bi-star', 'bi-star-fill')"
               onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
-              <i class="bi bi-star align-self-center fs-5"></i>
-              <div class="d-flex flex-column">
-                <small class="text-secondary">20 hours ago</small>
-                <p class="m-0"><%= recipe %></p>
-              </div>
-            </button>
+                <i class="bi bi-star align-self-center fs-5"></i>
+                <div class="d-flex flex-column">
+                  <small class="text-secondary"><i class="bi bi-clock-history"></i> <%= time_ago_in_words(recipe.created_at) %> ago</small>
+                  <h6 class="m-0"><%= recipe.name %></h6>
+                </div>
+              </button>
+            <% end %>
+          <% else %>
+            <p class="text-center my-2">You haven't added any recipe yet.</p>
           <% end %>
-        <% else %>
-          <p class="text-center">You don't have any recipe yet.</p>
-          <%= link_to "Do you want to add a new one?", new_recipe_path, class:"btn btn-primary w-100" %>
-        <% end %>
+        </div>
       </div>
+      <%= link_to "+ Add New Recipe", new_recipe_path, class:"btn btn-primary float-end mt-2" %>
     </div>
   </div>
   <div class="w-50 d-flex flex-column">
@@ -75,7 +79,7 @@
           <h5 class="m-0">New to the Food Inventory</h5>
         </div>
         <small class="d-none gap-2">
-          <%= link_to "View all", root_path, class:"text-decoration-none text-secondary align-self-center" %>
+          <%= link_to "View all", foods_path, class:"text-decoration-none text-secondary align-self-center" %>
           <i class="bi bi-box-arrow-up-right text-secondary align-self-center"></i>
         </small>
       </div>
@@ -96,10 +100,10 @@
             </button>
           <% end %>
         <% else %>
-          <p class="text-center">You don't have any food yet.</p>
+          <p class="text-center my-2">You haven't added any food yet.</p>
         <% end %>
       </div>
     </div>
-    <%= link_to "+ Add New", new_food_path, class: "btn btn-primary mt-2 ms-auto" %>
+    <%= link_to "+ Add New Food", new_food_path, class: "btn btn-primary mt-2 ms-auto" %>
   </div>
 </div>
