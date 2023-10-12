@@ -39,17 +39,25 @@ class RecipesController < ApplicationController
   def create
     @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
-      redirect_to recipes_path, notice: 'Recipe was successfully created.'
+      flash[:notice] = 'Recipe was successfully created.'
+      redirect_to recipes_path
     else
-      render 'new', alert: 'Food was not created.'
+      flash[:alert] = 'Something went wrong! Recipe was not created.'
+      render 'new'
     end
   end
 
   def destroy
     @recipe = Recipe.find_by(id: params[:id])
     RecipeFood.where(recipe_id: @recipe.id).destroy_all
-    @recipe.destroy
-    redirect_to recipes_path
+
+    if @recipe.destroy
+      flash[:notice] = 'Recipe was successfully deleted.'
+      redirect_to recipes_path
+    else
+      flash.now[:alert] = 'Something went wrong! Recipe was not deleted.'
+      render 'show'
+    end
   end
 
   def general_shopping_list
@@ -67,7 +75,7 @@ class RecipesController < ApplicationController
       @total_items = @shopping_list.sum { |item| item[:quantity] }
     else
       # If there's no recipes and food items show a message and redirect to the recipes page
-      flash[:error] = 'You need at least one recipe with ingredients to generate a shopping list.'
+      flash[:alert] = 'You need at least one recipe with ingredients to generate a shopping list.'
       redirect_to recipes_path
     end
   end

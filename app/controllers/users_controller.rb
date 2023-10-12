@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     return unless @user.nil?
 
-    flash[:error] = 'User not found'
+    flash[:alert] = 'User not found'
     redirect_to users_path
   end
 

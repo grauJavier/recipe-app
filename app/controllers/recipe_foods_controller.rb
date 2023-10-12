@@ -11,8 +11,10 @@ class RecipeFoodsController < ApplicationController
     @recipe_food = RecipeFood.new(recipe_food_params)
 
     if @recipe_food.save
-      redirect_to @recipe_food, notice: 'Ingredient was successfully added to the recipe.'
+      flash[:notice] = 'Ingredient was successfully added to the recipe.'
+      redirect_to @recipe_food
     else
+      flash.now[:alert] = 'Something went wrong! Ingredient was not added to the recipe.'
       render :new
     end
   end

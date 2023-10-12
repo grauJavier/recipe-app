@@ -16,7 +16,7 @@ class FoodsController < ApplicationController
     return unless @food.nil?
 
     # Set an error message
-    flash[:error] = 'Food not found'
+    flash[:alert] = 'Something went wrong! Food not found'
     # Redirect to the foods page
     redirect_to foods_path
   end
@@ -48,10 +48,10 @@ class FoodsController < ApplicationController
     end
 
     if @food.save
-      flash[:notice] = 'Food was successfully created.'
+      flash[:notice] = 'Food was successfully added to the list.'
       redirect_to foods_path
     else
-      flash.now[:alert] = 'Food was not created.'
+      flash.now[:alert] = 'Something went wrong! Food was not added to the list.'
       render 'new'
     end
   end
@@ -60,8 +60,14 @@ class FoodsController < ApplicationController
   def destroy
     @food = Food.find(params[:id])
     RecipeFood.where(food_id: @food.id).destroy_all
-    @food.destroy
-    redirect_to foods_path
+
+    if @food.destroy
+      flash[:notice] = 'Food was successfully deleted.'
+      redirect_to foods_path
+    else
+      flash.now[:alert] = 'Something went wrong! Food was not deleted.'
+      render 'show'
+    end
   end
 
   private
