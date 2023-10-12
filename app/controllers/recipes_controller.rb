@@ -7,6 +7,20 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find_by(id: params[:id])
+    # food that is related as an "ingredient"
+    @recipe_foods = RecipeFood.where(recipe_id: params[:id])
+
+    # If recipe has ingredients create an array with the ingredients
+    if @recipe_foods.any?
+      @ingredients = []
+      @recipe_foods.each do |recipe_food|
+        @ingredients << {
+          name: Food.find_by(id: recipe_food.food_id).name,
+          quantity: recipe_food.quantity,
+          price: recipe_food.quantity * Food.find_by(id: recipe_food.food_id).price
+        }
+      end
+    end
 
     return unless @recipe.nil?
 
@@ -56,12 +70,6 @@ class RecipesController < ApplicationController
       flash[:error] = 'You need at least one recipe with ingredients to generate a shopping list.'
       redirect_to recipes_path
     end
-  end
-
-  def destroy
-    @recipe = Recipe.find_by(id: params[:id])
-    @recipe.destroy
-    redirect_to recipes_path
   end
 
   private
