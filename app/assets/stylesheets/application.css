@@ -35,7 +35,8 @@ abbr[title] {
   display: none !important;
 }
 
-.button-list:hover p, a.card-title:hover {
+.button-list:hover p,
+a.card-title:hover {
   text-decoration: underline !important;
 }
 
