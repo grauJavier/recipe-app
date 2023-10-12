@@ -12,36 +12,23 @@
         </small>
       </div>
       <div class="list-group list-group-flush">
-        <button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
-                        onclick="window.location.href='<%= root_path %>'" 
-                        onmouseover="changeIconClass(this, 'bi-star', 'bi-star-fill')"
-                        onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
-          <i class="bi bi-star align-self-center fs-5"></i>
-          <div class="d-flex flex-column">
-            <small class="text-secondary">20 hours ago</small>
-            <p class="m-0">Some food title</p>
-          </div>
-        </button>
-        <button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
-                        onclick="window.location.href='<%= root_path %>'" 
-                        onmouseover="changeIconClass(this, 'bi-star', 'bi-star-fill')"
-                        onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
-          <i class="bi bi-star align-self-center fs-5"></i>
-          <div class="d-flex flex-column">
-            <small class="text-secondary">20 hours ago</small>
-            <p class="m-0">Some food title</p>
-          </div>
-        </button>
-        <button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
-                        onclick="window.location.href='<%= root_path %>'" 
-                        onmouseover="changeIconClass(this, 'bi-star', 'bi-star-fill')"
-                        onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
-          <i class="bi bi-star align-self-center fs-5"></i>
-          <div class="d-flex flex-column">
-            <small class="text-secondary">20 hours ago</small>
-            <p class="m-0">Some food title</p>
-          </div>
-        </button>
+        <% if @lastest_public_recipes != [] %>
+          <% @lastest_public_recipes.each do |recipe| %>
+            <button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
+                            onclick="window.location.href='<%= root_path %>'" 
+                            onmouseover="changeIconClass(this, 'bi-star', 'bi-star-fill')"
+                            onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
+              <i class="bi bi-star align-self-center fs-5"></i>
+              <div class="d-flex flex-column">
+                <small class="text-secondary">20 hours ago</small>
+                <p class="m-0"><%= recipe.name %></p>
+              </div>
+            </button>
+          <% end %>
+        <% else %>
+          <p class="text-center">You don't have any public recipe yet.</p>
+          <%= link_to "Do you want to add a new one?", new_recipe_path, class:"btn btn-primary w-100" %>
+        <% end %>
       </div>
     </div>
     <div class="card">
@@ -56,36 +43,23 @@
         </small>
       </div>
       <div class="list-group list-group-flush">
-        <button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
-                        onclick="window.location.href='<%= root_path %>'" 
-                        onmouseover="changeIconClass(this, 'bi-star', 'bi-star-fill')"
-                        onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
-          <i class="bi bi-star align-self-center fs-5"></i>
-          <div class="d-flex flex-column">
-            <small class="text-secondary">20 hours ago</small>
-            <p class="m-0">Some food title</p>
-          </div>
-        </button>
-        <button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
-                        onclick="window.location.href='<%= root_path %>'" 
-                        onmouseover="changeIconClass(this, 'bi-star', 'bi-star-fill')"
-                        onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
-          <i class="bi bi-star align-self-center fs-5"></i>
-          <div class="d-flex flex-column">
-            <small class="text-secondary">20 hours ago</small>
-            <p class="m-0">Some food title</p>
-          </div>
-        </button>
-        <button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
-                        onclick="window.location.href='<%= root_path %>'" 
-                        onmouseover="changeIconClass(this, 'bi-star', 'bi-star-fill')"
-                        onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
-          <i class="bi bi-star align-self-center fs-5"></i>
-          <div class="d-flex flex-column">
-            <small class="text-secondary">20 hours ago</small>
-            <p class="m-0">Some food title</p>
-          </div>
-        </button>
+        <% if @user_lastest_recipes != [] %>
+          <% @user_lastest_recipes.each do |recipe| %>
+            <button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
+              onclick="window.location.href='<%= root_path %>'" 
+              onmouseover="changeIconClass(this, 'bi-star', 'bi-star-fill')"
+              onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
+              <i class="bi bi-star align-self-center fs-5"></i>
+              <div class="d-flex flex-column">
+                <small class="text-secondary">20 hours ago</small>
+                <p class="m-0"><%= recipe %></p>
+              </div>
+            </button>
+          <% end %>
+        <% else %>
+          <p class="text-center">You don't have any recipe yet.</p>
+          <%= link_to "Do you want to add a new one?", new_recipe_path, class:"btn btn-primary w-100" %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -106,36 +80,24 @@
         </small>
       </div>
       <div class="list-group list-group-flush">
-        <button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
-                        onclick="window.location.href='<%= root_path %>'" 
-                        onmouseover="changeIconClass(this, 'bi-star', 'bi-star-fill')"
-                        onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
-          <i class="bi bi-star lh-1 fs-5"></i>
-          <div class="d-flex flex-column">
-            <p class="m-0">Some food title</p>
-            <small class="text-secondary ms-3">Spence: 200gr • Price: $200 per gr.</small>
-          </div>
-        </button>
-        <button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
-                        onclick="window.location.href='<%= root_path %>'" 
-                        onmouseover="changeIconClass(this, 'bi-star', 'bi-star-fill')"
-                        onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
-          <i class="bi bi-star lh-1 fs-5"></i>
-          <div class="d-flex flex-column">
-            <p class="m-0">Some food title</p>
-            <small class="text-secondary ms-3">Spence: 200gr • Price: $200 per gr.</small>
-          </div>
-        </button>
-        <button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
-                        onclick="window.location.href='<%= root_path %>'" 
-                        onmouseover="changeIconClass(this, 'bi-star', 'bi-star-fill')"
-                        onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
-          <i class="bi bi-star lh-1 fs-5"></i>
-          <div class="d-flex flex-column">
-            <p class="m-0">Some food title</p>
-            <small class="text-secondary ms-3">Spence: 200gr • Price: $200 per gr.</small>
-          </div>
-        </button>
+        <% if @user_lastest_foods != [] %>
+          <% @user_lastest_foods.each do |food| %>
+            <button class="d-flex gap-3 list-group-item list-group-item-action button-list" 
+                            onclick="window.location.href='<%= root_path %>'" 
+                            onmouseover="changeIconClass(this, 'bi-star', 'bi-star-fill')"
+                            onmouseout="changeIconClass(this, 'bi-star-fill', 'bi-star')">
+              <i class="bi bi-star lh-1 fs-5"></i>
+              <div class="d-flex flex-column">
+                <p class="m-0"><%= food.name %></p>
+                <small class="text-secondary ms-3">
+                  Spence: <%= food.quantity %> <%= food.measurement_unit %> • Price: $<%= food.price %> per <%= food.measurement_unit %>.
+                </small>
+              </div>
+            </button>
+          <% end %>
+        <% else %>
+          <p class="text-center">You don't have any food yet.</p>
+        <% end %>
       </div>
     </div>
     <%= link_to "+ Add New", new_food_path, class: "btn btn-primary mt-2 ms-auto" %>

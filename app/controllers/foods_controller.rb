@@ -46,7 +46,7 @@ class FoodsController < ApplicationController
       # If the food already exists, update its quantity
       @food.quantity += params[:food][:quantity].to_i
     end
-    
+
     if @food.save
       flash[:notice] = 'Food was successfully created.'
       redirect_to foods_path
