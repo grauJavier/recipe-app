@@ -1,0 +1,13 @@
+<%= @foods %>
+<% if @foods != [] %>
+    <%= form_for @recipe_food do |f| %>
+        <%= f.label :food_id %>
+        <%= f.select :food_id, @foods.collect {|f| [f.name, f.id]} %>
+        <%= f.label :quantity %>
+        <%= f.text_field :quantity %>
+        <%= f.submit %>
+    <% end %>
+<% else %>
+    <p>There are no foods in the database</p>
+<% end %>
+<p>enter the quantity of the ingredient</p>
