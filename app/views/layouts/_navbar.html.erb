@@ -4,19 +4,19 @@
     <%= image_tag('logo.png', alt: 'Recipe App Logo', size: '50x50', class: 'me-3') %>
     <ul class="navbar-nav gap-4 flex-row justify-self-start">
       <li class="nav-item active">
-        <%= link_to "Home", home_index_path, class: "nav-link" %>
+        <%= link_to "Home", home_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
         <%= link_to "Public Recipes", public_recipe_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <%= link_to "My Recipes", recipes_index_path, class: "nav-link" %>
+        <%= link_to "My Recipes", recipes_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <%= link_to "Food", foods_index_path, class: "nav-link" %>
+        <%= link_to "Food", foods_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Shopping List</a>
+        <%= link_to "Shopping List", general_shopping_list_path, class: "nav-link" %>
       </li>
       <%# <% if user_signed_in? %>
       <%#    <li class="nav-item">
