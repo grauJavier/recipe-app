@@ -1,13 +1,18 @@
 <%= @foods %>
-<% if @foods != [] %>
-    <%= form_for @recipe_food do |f| %>
+<% if @foods.present? %>
+
+    <%= form_with(model: @recipe_food, local: true) do |f| %>
+        <%= f.hidden_field :recipe_id, value: @recipe.id %>
         <%= f.label :food_id %>
-        <%= f.select :food_id, @foods.collect {|f| [f.name, f.id]} %>
+        <%= f.collection_select :food_id, @foods, :id, :name %>
         <%= f.label :quantity %>
         <%= f.text_field :quantity %>
         <%= f.submit %>
     <% end %>
+
 <% else %>
-    <p>There are no foods in the database</p>
+  <p>There are no ingredients availables to add to this recipe.</p>
+  <%= link_to 'You need to add a new one?', new_food_path %>
 <% end %>
+
 <p>enter the quantity of the ingredient</p>
