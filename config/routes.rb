@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
 
   root "home#index"
+  get '/home', to: 'home#index'
   resources :users, only: %i[index show new create destroy]
   resources :recipes, only: %i[index show new create destroy]
-  get '/home', to: 'home#index'
+  resources :recipe_foods, only: %i[new create destroy]
   get '/public_recipe', to: 'recipes#public_recipe', as: 'public_recipe'
   get '/general_shopping_list', to: 'recipes#general_shopping_list', as: 'general_shopping_list'
   resources :foods, only: %i[index show new create destroy]
