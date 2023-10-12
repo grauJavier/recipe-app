@@ -20,13 +20,13 @@
       <p><strong>Description:</strong> <%= @recipe.description %></p>
       <div class="d-flex justify-content-between">
         <%= link_to 'Go to shopping list', recipes_path, class: 'btn btn-secondary px-5' %>
-        <%= link_to '+ Add Ingredient', new_recipe_path, class: 'btn btn-primary px-5' %>
+        <%= link_to '+ Add Ingredient', new_recipe_food_path(recipe_id: @recipe.id), class: 'btn btn-primary px-5' %>
       </div>
-      <% if @shopping_list %>
+      <% if @ingredients != [] %>
       <div class="h-75 border-bottom my-4"></div>
-        <% @shopping_list.each do |item| %>
+        <% @ingredients.each do |item| %>
           <ul>
-            <li><%= item[:food].name %></li>
+            <li><%= item[:name] %></li>
             <li><%= item[:quantity] %></li>
             <li><%= number_to_currency(item[:price]) %></li>
           </ul>
