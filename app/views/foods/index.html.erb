@@ -25,7 +25,7 @@
             <td><%= food.measurement_unit %></td>
             <td><%= number_to_currency(food.price) %></td>
             <td class="pe-3 text-center">
-              <%= button_to 'Delete', food, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-secondary py-0 px-2' %>
+              <%= button_to 'Delete', food, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-secondary py-0 px-2 border-0' %>
             </td>
           </tr>
         <% end %>

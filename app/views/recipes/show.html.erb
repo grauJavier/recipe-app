@@ -1,9 +1,37 @@
 <%# app/views/recipes/show.html.erb %>
-
-<h1><%= @recipe.name %></h1>
-<p><strong>Preparation Time:</strong> <%= @recipe.preparation_time %> minutes</p>
-<p><strong>Cooking Time:</strong> <%= @recipe.cooking_time %> minutes</p>
-<p><strong>Description:</strong> <%= @recipe.description %></p>
-<p><strong>Public:</strong> <%= @recipe.public ? "Yes" : "No" %></p>
-
-<%= link_to 'Back to Recipes', recipes_path, class: 'btn btn-secondary' %>
+<div class="body-max-width mx-auto mt-5">
+  <div class="card w-50 mx-auto">
+    <div class="card-header d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-journal me-2 fs-4"></i>
+        <h4 class="m-0"><%= @recipe.name %></h4>
+      </div>
+      <%= link_to 'Back to Recipes', recipes_path, class: 'btn btn-outline-secondary' %>
+    </div>
+    <div class="d-flex flex-column gap-1 p-3">
+      <div class="d-flex justify-content-between">
+        <p><strong>Preparation Time:</strong> <%= @recipe.preparation_time %> minutes</p>
+        <div class="form-check form-switch">
+          <label class="form-check-label" for="flexSwitchCheckDefault">Public</label>
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" <%= @recipe.public ? 'checked' : '' %> disabled>
+        </div>
+      </div>
+      <p><strong>Cooking Time:</strong> <%= @recipe.cooking_time %> minutes</p>
+      <p><strong>Description:</strong> <%= @recipe.description %></p>
+      <div class="d-flex justify-content-between">
+        <%= link_to 'Go to shopping list', recipes_path, class: 'btn btn-secondary px-5' %>
+        <%= link_to '+ Add Ingredient', new_recipe_path, class: 'btn btn-primary px-5' %>
+      </div>
+      <% if @shopping_list %>
+      <div class="h-75 border-bottom my-4"></div>
+        <% @shopping_list.each do |item| %>
+          <ul>
+            <li><%= item[:food].name %></li>
+            <li><%= item[:quantity] %></li>
+            <li><%= number_to_currency(item[:price]) %></li>
+          </ul>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

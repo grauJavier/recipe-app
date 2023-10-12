@@ -27,12 +27,16 @@ small,
   font-size: 0.8em;
 }
 
+.smaller {
+  font-size: 0.6em;
+}
+
 abbr[title] {
   display: none !important;
 }
 
-.button-list:hover p {
-  text-decoration: underline;
+.button-list:hover p, a.card-title:hover {
+  text-decoration: underline !important;
 }
 
 .button-list:hover i {

@@ -31,16 +31,24 @@ class FoodsController < ApplicationController
   def create
     # If the food already exists with the same name, measurement_unit, price and created by same user
     # update the quantity otherwise create a new food object
-    @food = current_user.foods.build(food_params).find_or_create_by(
+    @food = Food.find_or_initialize_by(
       name: params[:food][:name],
       measurement_unit: params[:food][:measurement_unit],
       price: params[:food][:price],
       user_id: current_user.id
     )
-    # Update the quantity of the food object
-    @food.quantity += params[:food][:quantity].to_i
+
+    if @food.new_record?
+      # If the food is a new record, it means it doesn't exist, so set the user and quantity
+      @food.user = current_user
+      @food.quantity = params[:food][:quantity]
+    else
+      # If the food already exists, update its quantity
+      @food.quantity += params[:food][:quantity].to_i
+    end
+    
     if @food.save
-      redirect_to foods_index_path, notice: 'Food was successfully created.'
+      redirect_to foods_path, notice: 'Food was successfully created.'
     else
       render 'new', alert: 'Food was not created.'
     end

@@ -30,7 +30,11 @@
           Mercedez Sosa
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i> Log out</a></li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete, data: { turbo_method: :delete } do %>
+              <i class="bi bi-box-arrow-right"></i> Log out
+            <% end %>
+          </li>
         </ul>
       </li>
       <%= image_tag("https://i.pravatar.cc/50?img=0", alt: 'Recipe App Logo', size: '50x50', class: 'rounded-circle bg-white border p-1') %>
