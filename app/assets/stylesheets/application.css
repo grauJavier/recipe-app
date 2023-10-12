@@ -35,7 +35,8 @@ abbr[title] {
   display: none !important;
 }
 
-.button-list:hover p, a.card-title:hover {
+.button-list:hover p,
+a.card-title:hover {
   text-decoration: underline !important;
 }
 
@@ -68,3 +69,17 @@ abbr[title] {
 .dropdown-menu[data-bs-popper] {
   left: -33px !important;
 }
+
+.notice {
+  opacity: 0;
+  transition: opacity 1s;
+  position: absolute;
+  background-color: #ffc5c6;
+  border: #9b5051 solid 1px;
+  color: #9b5051;
+  font-size: 0.7em;
+}
+
+.fade-in {
+  opacity: 1;
+};

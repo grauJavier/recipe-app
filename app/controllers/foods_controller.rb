@@ -48,9 +48,11 @@ class FoodsController < ApplicationController
     end
     
     if @food.save
-      redirect_to foods_path, notice: 'Food was successfully created.'
+      flash[:notice] = 'Food was successfully created.'
+      redirect_to foods_path
     else
-      render 'new', alert: 'Food was not created.'
+      flash.now[:alert] = 'Food was not created.'
+      render 'new'
     end
   end
 

@@ -13,7 +13,9 @@
           <div class="card flex-row gap-2">
             <div class="col-3 bg-light border-end rounded-start p-3">
               <h5><%= link_to recipe.name, recipe, class: 'card-title text-decoration-none' %></h5>
-              <%= button_to 'Delete', recipe, method: :delete, class: 'btn btn-outline-secondary px-4 py-1' %>
+              <% if current_user == recipe.user %>
+                <%= button_to 'Delete', recipe, method: :delete, class: 'btn btn-outline-secondary px-4 py-1' %>
+              <% end %>
             </div>
             <div clas="col-7">
               <p class="card-text p-3"><%= recipe.description %></p>

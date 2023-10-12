@@ -58,12 +58,6 @@ class RecipesController < ApplicationController
     end
   end
 
-  def destroy
-    @recipe = Recipe.find_by(id: params[:id])
-    @recipe.destroy
-    redirect_to recipes_path
-  end
-
   private
 
   # method to generate the shopping list
