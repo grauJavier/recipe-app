@@ -15,6 +15,7 @@ class RecipesController < ApplicationController
       @ingredients = []
       @recipe_foods.each do |recipe_food|
         @ingredients << {
+          id: recipe_food.food_id,
           name: Food.find_by(id: recipe_food.food_id).name,
           quantity: recipe_food.quantity,
           price: recipe_food.quantity * Food.find_by(id: recipe_food.food_id).price
@@ -29,7 +30,7 @@ class RecipesController < ApplicationController
   end
 
   def public_recipe
-    @recipes = Recipe.where(public: true).order(created_at: :desc)
+    @recipes = Recipe.where(public: true).order(created_at: :desc).includes([:user])
   end
 
   def new
