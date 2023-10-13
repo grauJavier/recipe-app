@@ -2,9 +2,11 @@
 require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
-
   let(:user) { User.create(name: 'Test User', email: 'test@example.com', password: 'password123') }
-  let(:recipe) { user.recipes.create(name: 'Fruit Salad', preparation_time: 10, cooking_time: 15, description: 'Healthy fruit salad recipe.', public: true) }
+  let(:recipe) do
+    user.recipes.create(name: 'Fruit Salad', preparation_time: 10, cooking_time: 15,
+                        description: 'Healthy fruit salad recipe.', public: true)
+  end
 
   before do
     User.destroy_all

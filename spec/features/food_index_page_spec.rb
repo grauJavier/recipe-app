@@ -29,7 +29,7 @@ RSpec.describe 'Food Inventory Page', type: :feature do
           user.foods.create(name: 'Banana', measurement_unit: 'piece', price: 2, quantity: 2)
         ]
       end
-      
+
 
       scenario 'displays the food items in the table' do
         visit foods_path
@@ -40,14 +40,14 @@ RSpec.describe 'Food Inventory Page', type: :feature do
           expect(page).to have_content(food.price)
         end
       end
-      
+
       scenario 'displays the delete button for each food item' do
         visit foods_path
-        food_items.each do |food|
+        food_items.each do |_food|
           expect(page).to have_button('Delete', count: food_items.count)
         end
       end
-    end      
+    end
 
     scenario 'displays a message when there are no food items' do
       visit foods_path

@@ -4,7 +4,10 @@ require 'rails_helper'
 RSpec.describe 'Recipe Show Page', type: :feature do
   describe 'GET /recipes/:id' do
     let(:user) { User.create(name: 'Test User', email: 'test@example.com', password: 'password123') }
-    let(:recipe) { user.recipes.create(name: 'Fruit Salad', preparation_time: 10, cooking_time: 15, description: 'Healthy fruit salad recipe.', public: true) }
+    let(:recipe) do
+      user.recipes.create(name: 'Fruit Salad', preparation_time: 10, cooking_time: 15,
+                          description: 'Healthy fruit salad recipe.', public: true)
+    end
 
     before do
       User.destroy_all
@@ -36,9 +39,9 @@ RSpec.describe 'Recipe Show Page', type: :feature do
 
     scenario 'displays the recipe public status' do
       visit recipe_path(recipe)
-    
+
       expect(page).to have_content('Public')
-    
+
       checkbox = find("input[type='checkbox'][disabled]")
       expect(checkbox).to be_checked if recipe.public
       expect(checkbox).not_to be_checked unless recipe.public
