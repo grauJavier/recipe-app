@@ -26,9 +26,6 @@ development:
   database: recipe_app_development
   host: localhost
   user: postgres
-  password: 7410
-
-  user: postgres
   password: microverse
 
   # The specified database role being used to connect to postgres.
@@ -65,9 +62,6 @@ test:
   <<: *default
   database: recipe_app_test
   host: localhost
-  user: postgres
-  password: 7410
-
   user: postgres
   password: microverse
 

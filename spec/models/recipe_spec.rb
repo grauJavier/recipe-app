@@ -2,20 +2,15 @@
 require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
-  user = User.create(
-    name: 'Test User',
-    email: 'test@example.com',
-    password: 'password123'
-  )
-  user.save
-  recipe = Recipe.create(
-    name: 'Fruit Salad',
-    preparation_time: 10,
-    cooking_time: 15,
-    description: 'Healthy fruit salad recipe.',
-    public: true,
-    user_id: user.id
-  )
+
+  let(:user) { User.create(name: 'Test User', email: 'test@example.com', password: 'password123') }
+  let(:recipe) { user.recipes.create(name: 'Fruit Salad', preparation_time: 10, cooking_time: 15, description: 'Healthy fruit salad recipe.', public: true) }
+
+  before do
+    User.destroy_all
+    user.save
+    user.confirm
+  end
 
   it 'is valid with valid attributes' do
     expect(recipe).to be_valid

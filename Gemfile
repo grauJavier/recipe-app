@@ -45,6 +45,10 @@ gem 'annotate'
 gem 'kaminari'
 # authentication
 gem 'devise'
+# testing
+gem 'rack', '2.2.8'
+# DataBase cleaner
+gem 'database_cleaner'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
