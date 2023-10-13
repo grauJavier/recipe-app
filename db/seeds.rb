@@ -44,10 +44,10 @@ user1 = User.create!(
     public: true
   )
   
-  RecipeFood.create!(recipe: recipe1, food: food1, quantity: 1)
-  RecipeFood.create!(recipe: recipe1, food: food2, quantity: 1)
+  RecipeFood.create!(recipe: recipe1, food: food1, quantity: 3)
+  RecipeFood.create!(recipe: recipe1, food: food2, quantity: 4)
   
-  RecipeFood.create!(recipe: recipe2, food: food3, quantity: 1)
-  RecipeFood.create!(recipe: recipe2, food: food4, quantity: 1)
+  RecipeFood.create!(recipe: recipe2, food: food3, quantity: 4)
+  RecipeFood.create!(recipe: recipe2, food: food4, quantity: 3)
   
   puts "Created seed data successfully!"
