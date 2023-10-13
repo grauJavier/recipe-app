@@ -30,7 +30,6 @@ RSpec.describe 'Food Inventory Page', type: :feature do
         ]
       end
 
-
       scenario 'displays the food items in the table' do
         visit foods_path
         food_items.each do |food|
