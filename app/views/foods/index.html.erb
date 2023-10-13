@@ -1,0 +1,39 @@
+<div class="body-max-width mx-auto mt-5">
+  <div class="card">
+    <div class="card-header d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-cookie me-2 fs-4"></i>
+        <h4 class="m-0">Food Inventory</h4>
+      </div>
+      <%= link_to '+ Add New Food', new_food_path, class: 'btn btn-primary' %>
+    </div>
+    <% if @foods.any? %>
+      <table class="table table-hover mb-0 rounded-bottom">
+        <thead>
+          <tr>
+            <th class="bg-pink text-white fw-normal ps-3">Food</th>
+            <th class="bg-pink text-white fw-normal text-center">Quantity</th>
+            <th class="bg-pink text-white fw-normal">Measurement Unit</th>
+            <th class="bg-pink text-white fw-normal">Unit Price</th>
+            <th class="bg-pink text-white fw-normal pe-3 text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="rounded-bottom">
+          <% @foods.each do |food| %>
+            <tr>
+              <td class="ps-3 align-self-center"><%= food.name %></td>
+              <td class="text-center"><%= food.quantity %></td>
+              <td><%= food.measurement_unit %></td>
+              <td><%= number_to_currency(food.price) %></td>
+              <td class="pe-3 text-center">
+                <%= button_to 'Delete', food, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-secondary py-0 px-2 border-0' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="m-0 text-center m-3">You haven't added any food yet.</p>
+    <% end %>
+  </div>
+</div>

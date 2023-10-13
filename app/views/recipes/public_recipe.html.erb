@@ -1,0 +1,30 @@
+<div class="body-max-width mx-auto mt-5">
+  <div class="card">
+    <div class="card-header d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-book me-2 fs-4"></i>
+        <h4 class="m-0">Public Recipes</h4>
+      </div>
+      <%= link_to '+ Add New Recipe', new_recipe_path, class: 'btn btn-primary' %>
+    </div>
+    <div class="w-75 mx-auto my-3 d-flex flex-column gap-3">
+      <% if @recipes.any? %>
+        <% @recipes.each do |recipe| %>
+          <div class="card flex-row gap-2 recipe-card">
+            <div class="col-3 bg-light border-end rounded-start p-3">
+              <h5><%= link_to recipe.name, recipe, class: 'card-title text-decoration-none' %></h5>
+              <% if current_user == recipe.user %>
+                <%= button_to 'Delete', recipe, method: :delete, class: 'btn btn-outline-secondary px-4 py-1' %>
+              <% end %>
+            </div>
+            <div clas="col-7">
+              <p class="card-text p-3"><%= recipe.description %></p>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="m-0 text-center">You haven't created any recipes yet.</p>
+      <% end %>
+    </div>
+  </div>
+</div>

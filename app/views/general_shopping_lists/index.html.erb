@@ -1,0 +1,55 @@
+<div class="body-max-width mx-auto mt-5">
+  <div class="card border-0 w-50 mx-auto">
+    <div class="card-header border border-bottom-0 d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-basket-fill me-2 fs-4"></i>
+        <h4 class="m-0">General Shopping List</h4>
+      </div>
+      <small class="d-flex gap-2">
+        <%= link_to "Back to home", root_path, class:"text-decoration-none text-secondary align-self-center" %>
+        <i class="bi bi-box-arrow-up-right text-secondary align-self-center"></i>
+      </small>
+    </div>
+    <% if @shopping_list.empty? %>
+      <div class="card-body text-center border">
+        <p class="text-secondary m-0 fst-italic">You have all the ingredients for your recipes in your inventory. <br /> Nothing to buy today :)</p>
+      </div>
+    <% else %>
+      <table class="table table-hover mb-0 border border-top-0">
+        <thead>
+          <tr>
+            <th class="bg-pink text-white fw-normal ps-3">Ingredient</th>
+            <th class="bg-pink text-white fw-normal text-end">Quantity</th>
+            <th class="bg-pink text-white fw-normal text-end pe-3">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @shopping_list.each do |item| %>
+            <tr>
+              <td class="ps-3"><%= item[1][:name] %></td>
+              <td class="text-end">
+                <%= item[1][:quantity].to_i %>
+                <%= item[1][:measurement_unit] %><% if item[1][:measurement_unit].length > 2 && item[1][:quantity].to_i > 1 %>s
+                <% end %>
+              </td>
+              <td class="text-end pe-3">$<%= item[1][:total_price] %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+    <div class="card-footer border border-top-0">
+      <% if @shopping_list.any? %>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+            <h6 class="me-3 mb-0">Total Food Items: <span class="fw-normal mb-0"><%= @shopping_list.count %></span> </h6>
+          </div>
+          <div class="d-flex align-items-center">
+            <h6 class="me-3 mb-0">Total:</h6>
+            <p class="mb-0">$<%= @total_price.to_i %></p>
+          </div>
+        </div>
+      </div>
+      <% end %>
+  </div>
+</div>
