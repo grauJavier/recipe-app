@@ -16,7 +16,7 @@ class FoodsController < ApplicationController
     return unless @food.nil?
 
     # Set an error message
-    flash[:error] = 'Food not found'
+    flash[:alert] = 'Something went wrong! Food not found'
     # Redirect to the foods page
     redirect_to foods_path
   end
@@ -29,8 +29,6 @@ class FoodsController < ApplicationController
 
   # POST /foods
   def create
-    # If the food already exists with the same name, measurement_unit, price and created by same user
-    # update the quantity otherwise create a new food object
     @food = Food.find_or_initialize_by(
       name: params[:food][:name],
       measurement_unit: params[:food][:measurement_unit],
@@ -39,29 +37,32 @@ class FoodsController < ApplicationController
     )
 
     if @food.new_record?
-      # If the food is a new record, it means it doesn't exist, so set the user and quantity
       @food.user = current_user
       @food.quantity = params[:food][:quantity]
     else
-      # If the food already exists, update its quantity
       @food.quantity += params[:food][:quantity].to_i
     end
 
     if @food.save
-      flash[:notice] = 'Food was successfully created.'
+      flash[:notice] = 'Food was successfully added to the list.'
       redirect_to foods_path
     else
-      flash.now[:alert] = 'Food was not created.'
+      flash.now[:alert] = 'Something went wrong! Food was not added to the list.'
       render 'new'
     end
   end
 
-  # DELETE /foods/:id
   def destroy
     @food = Food.find(params[:id])
     RecipeFood.where(food_id: @food.id).destroy_all
-    @food.destroy
-    redirect_to foods_path
+
+    if @food.destroy
+      flash[:notice] = 'Food was successfully deleted.'
+      redirect_to foods_path
+    else
+      flash.now[:alert] = 'Something went wrong! Food was not deleted.'
+      render 'show'
+    end
   end
 
   private

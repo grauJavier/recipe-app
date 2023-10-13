@@ -1,17 +1,3 @@
-# == Schema Information
-#
-# Table name: recipes
-#
-#  id               :bigint           not null, primary key
-#  name             :string(50)       not null
-#  preparation_time :decimal(4, 2)    not null
-#  cooking_time     :decimal(4, 2)    not null
-#  description      :text             not null
-#  public           :boolean          default(FALSE)
-#  user_id          :bigint           not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#
 class Recipe < ApplicationRecord
   belongs_to :user
   has_many :recipe_foods

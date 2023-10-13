@@ -48,10 +48,18 @@ a.card-title:hover {
   background-color: #f87d7f !important;
 }
 
+.dropdown-menu li:hover {
+  background-color: #f87d7f !important;
+}
+
 .btn-primary,
 .dropdown-menu a:active {
   border: 0 !important;
   background-color: #f87d7f !important;
+}
+
+.dropdown-menu li:hover a {
+  color: #fff !important;
 }
 
 .btn-primary:active {
@@ -88,7 +96,27 @@ div.recipe-card {
   min-height: 6em !important;
 }
 
-.form-check-input {
+.form-switch .form-check-input[checked],
+input[type='checkbox']:checked {
   background-color: #f87d7f !important;
   border-color: #f87d7f !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #f87d7f !important;
+  box-shadow: 0 0 0 #f87d7f !important;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #f87d7f !important;
+  --bs-btn-border-color: #f87d7f !important;
+  --bs-btn-hover-bg: #f87d7f !important;
+  --bs-btn-hover-border-color: #f87d7f !important;
+  --bs-btn-active-color: #f87d7f !important;
+  --bs-btn-active-bg: #f87d7f !important;
+  --bs-btn-active-border-color: #f87d7f !important;
+  --bs-btn-disabled-color: #f87d7f !important;
+  --bs-btn-disabled-border-color: #f87d7f !important;
 }
