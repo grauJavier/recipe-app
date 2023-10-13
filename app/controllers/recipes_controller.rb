@@ -15,8 +15,10 @@ class RecipesController < ApplicationController
       @ingredients = []
       @recipe_foods.each do |recipe_food|
         @ingredients << {
+          id: recipe_food.id,
           name: Food.find_by(id: recipe_food.food_id).name,
           quantity: recipe_food.quantity,
+          measurement_unit: Food.find_by(id: recipe_food.food_id).measurement_unit,
           price: recipe_food.quantity * Food.find_by(id: recipe_food.food_id).price
         }
       end
@@ -40,7 +42,7 @@ class RecipesController < ApplicationController
     @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
       flash[:notice] = 'Recipe was successfully created.'
-      redirect_to recipes_path
+      redirect_to recipes_path 
     else
       flash[:alert] = 'Something went wrong! Recipe was not created.'
       render 'new'

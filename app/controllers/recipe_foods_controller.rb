@@ -16,12 +16,27 @@ class RecipeFoodsController < ApplicationController
 
     if @recipe_food.save
       flash[:notice] = 'Ingredient was successfully added to the recipe.'
-      redirect_to @recipe_food
+      redirect_to recipe_path(@recipe_food.recipe_id)
     else
       flash.now[:alert] = 'Something went wrong! Ingredient was not added to the recipe.'
       render :new
     end
   end
+
+  # DELETE /recipe_foods/:id
+def destroy
+  @recipe_food = RecipeFood.find(params[:id])
+  @recipe = Recipe.find(@recipe_food.recipe_id)
+
+  if @recipe_food.destroy
+    flash[:notice] = 'Ingredient was successfully removed from the recipe.'
+  else
+    flash[:alert] = 'Something went wrong! Ingredient was not removed from the recipe.'
+  end
+
+  redirect_to recipe_path(@recipe.id)
+end
+
 
   private
 

@@ -22,15 +22,36 @@
         <%= link_to 'Go to shopping list', recipes_path, class: 'btn btn-secondary px-5' %>
         <%= link_to '+ Add Ingredient', new_recipe_food_path(recipe_id: @recipe.id), class: 'btn btn-primary px-5' %>
       </div>
-      <% if @ingredients != [] %>
-      <div class="h-75 border-bottom my-4"></div>
-        <% @ingredients.each do |item| %>
-          <ul>
-            <li><%= item[:name] %></li>
-            <li><%= item[:quantity] %></li>
-            <li><%= number_to_currency(item[:price]) %></li>
-          </ul>
-        <% end %>
+      <% if @ingredients.present? %>
+        <div class="h-75 border-bottom my-4"></div>
+        <div class="table-responsive">
+          <table class="table table-hover mb-0 border">
+            <thead>
+              <tr>
+                <th class="bg-pink text-white fw-normal ps-3">Ingredient</th>
+                <th class="bg-pink text-white fw-normal text-center">Quantity</th>
+                <th class="bg-pink text-white fw-normal">Price</th>
+                <th class="bg-pink text-white fw-normal pe-3 text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @ingredients.each do |item| %>
+                <tr>
+                  <td class="ps-3"><%= item[:name] %></td>
+                  <td class="text-center">
+                    <%= item[:quantity] %>
+                    <%= item[:measurement_unit] %><% if item[:measurement_unit].length > 2 && item[:quantity] > 1 %>s
+                    <% end %>
+                  </td>
+                  <td><%= number_to_currency(item[:price]) %></td>
+                  <td class="pe-3 text-center col-2">
+                    <%= button_to 'Remove', recipe_food_path(item[:id]), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-secondary py-0 px-2 border-0' %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       <% end %>
     </div>
   </div>
