@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[index show new create destroy]
   resources :recipes, only: %i[index show new create destroy]
   resources :recipe_foods, only: %i[new create destroy]
+  resources :general_shopping_lists, only: [:index]
   get '/public_recipe', to: 'recipes#public_recipe', as: 'public_recipe'
-  get '/general_shopping_list', to: 'recipes#general_shopping_list', as: 'general_shopping_list'
   resources :foods, only: %i[index show new create destroy]
 end

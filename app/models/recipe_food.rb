@@ -1,14 +1,3 @@
-# == Schema Information
-#
-# Table name: recipe_foods
-#
-#  id         :bigint           not null, primary key
-#  quantity   :integer          not null
-#  recipe_id  :bigint           not null
-#  food_id    :bigint           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
 class RecipeFood < ApplicationRecord
   belongs_to :recipe
   belongs_to :food

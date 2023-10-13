@@ -29,8 +29,6 @@ class FoodsController < ApplicationController
 
   # POST /foods
   def create
-    # If the food already exists with the same name, measurement_unit, price and created by same user
-    # update the quantity otherwise create a new food object
     @food = Food.find_or_initialize_by(
       name: params[:food][:name],
       measurement_unit: params[:food][:measurement_unit],
@@ -39,11 +37,9 @@ class FoodsController < ApplicationController
     )
 
     if @food.new_record?
-      # If the food is a new record, it means it doesn't exist, so set the user and quantity
       @food.user = current_user
       @food.quantity = params[:food][:quantity]
     else
-      # If the food already exists, update its quantity
       @food.quantity += params[:food][:quantity].to_i
     end
 
@@ -56,7 +52,6 @@ class FoodsController < ApplicationController
     end
   end
 
-  # DELETE /foods/:id
   def destroy
     @food = Food.find(params[:id])
     RecipeFood.where(food_id: @food.id).destroy_all

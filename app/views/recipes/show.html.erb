@@ -1,4 +1,3 @@
-<%# app/views/recipes/show.html.erb %>
 <div class="body-max-width mx-auto mt-5">
   <div class="card w-50 mx-auto">
     <div class="card-header d-flex align-items-center justify-content-between">
@@ -19,8 +18,15 @@
       <p><strong>Cooking Time:</strong> <%= @recipe.cooking_time %> minutes</p>
       <p><strong>Description:</strong> <%= @recipe.description %></p>
       <div class="d-flex justify-content-between">
-        <%= link_to 'Go to shopping list', recipes_path, class: 'btn btn-secondary px-5' %>
-        <%= link_to '+ Add Ingredient', new_recipe_food_path(recipe_id: @recipe.id), class: 'btn btn-primary px-5' %>
+        <%= link_to general_shopping_lists_path, class: 'btn btn-secondary px-5' do %>
+          Go to my Shopping List
+          <i class="bi bi-box-arrow-up-right text-white ms-1"></i>
+        <% end %>
+        <% if current_user == @recipe.user %>
+          <%= link_to '+ Add Ingredient', new_recipe_food_path(recipe_id: @recipe.id), class: 'btn btn-primary px-5' %>
+        <% else %>
+          <%= button_to '+ Add Ingredient', new_recipe_food_path(recipe_id: @recipe.id), class: 'btn btn-primary px-5 disabled' %>
+        <% end %>
       </div>
       <% if @ingredients.present? %>
         <div class="h-75 border-bottom my-4"></div>
@@ -45,7 +51,11 @@
                   </td>
                   <td><%= number_to_currency(item[:price]) %></td>
                   <td class="pe-3 text-center col-2">
-                    <%= button_to 'Remove', recipe_food_path(item[:id]), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-secondary py-0 px-2 border-0' %>
+                    <% if current_user == @recipe.user %>
+                      <%= button_to 'Remove', recipe_food_path(item[:id]), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-secondary py-0 px-2 border-0' %>
+                    <% else %>
+                      <small class="fst-italic text-secondary">Not allowed</small>
+                    <% end %>
                   </td>
                 </tr>
               <% end %>

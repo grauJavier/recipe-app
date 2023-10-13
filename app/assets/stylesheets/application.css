@@ -48,10 +48,18 @@ a.card-title:hover {
   background-color: #f87d7f !important;
 }
 
+.dropdown-menu li:hover {
+  background-color: #f87d7f !important;
+}
+
 .btn-primary,
 .dropdown-menu a:active {
   border: 0 !important;
   background-color: #f87d7f !important;
+}
+
+.dropdown-menu li:hover a {
+  color: #fff !important;
 }
 
 .btn-primary:active {

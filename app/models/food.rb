@@ -1,16 +1,3 @@
-# == Schema Information
-#
-# Table name: foods
-#
-#  id               :bigint           not null, primary key
-#  name             :string(50)       not null
-#  measurement_unit :string(15)       not null
-#  price            :float            not null
-#  quantity         :integer          not null
-#  user_id          :bigint           not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#
 class Food < ApplicationRecord
   belongs_to :user
   has_many :recipe_foods
