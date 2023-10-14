@@ -45,6 +45,10 @@ gem 'annotate'
 gem 'kaminari'
 # authentication
 gem 'devise'
+# testing
+gem 'rack', '2.2.8'
+# DataBase cleaner
+gem 'database_cleaner'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
@@ -65,6 +69,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-doc'
   # For unit test with Rspec
+  gem 'capybara'
   gem 'rspec-rails'
 end
 
@@ -86,7 +91,6 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'capybara'
   gem 'rails-controller-testing'
   gem 'selenium-webdriver'
 end
