@@ -1,0 +1,21 @@
+<div class="card d-flex w-25 p-3 mx-auto mt-5">
+  <h2>Log in</h2>
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "d-flex flex-column" }) do |f| %>
+    <div class="form-inputs d-flex flex-column gap-2">
+      <%= f.input :email,
+                required: false,
+                autofocus: true,
+                input_html: { autocomplete: "email", class: "w-100" },
+                label_html: { class: "text-secondary" } %>
+      <%= f.input :password,
+                required: false,
+                input_html: { autocomplete: "current-password", class: "w-100" },
+                label_html: { class: "text-secondary" } %>
+      <%= f.input :remember_me, label_html: { class: 'small d-flex align-items-center gap-1' }, as: :boolean if devise_mapping.rememberable? %>
+    </div>
+    <div class="form-actions d-flex">
+      <%= f.button :submit, "Log in", class: "btn btn-primary mt-2 ms-auto px-4" %>
+    </div>
+  <% end %>
+  <%= render "devise/shared/links" %>
+</div>

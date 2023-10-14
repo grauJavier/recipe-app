@@ -1,0 +1,122 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+body {
+  background-color: #fff;
+}
+
+.body-max-width {
+  max-width: 1300px !important;
+}
+
+small,
+.small {
+  font-size: 0.8em;
+}
+
+.smaller {
+  font-size: 0.6em;
+}
+
+abbr[title] {
+  display: none !important;
+}
+
+.button-list:hover p,
+a.card-title:hover {
+  text-decoration: underline !important;
+}
+
+.button-list:hover i.bi-star-fill {
+  color: #fde155;
+}
+
+.bg-pink {
+  background-color: #f87d7f !important;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f87d7f !important;
+}
+
+.btn-primary,
+.dropdown-menu a:active {
+  border: 0 !important;
+  background-color: #f87d7f !important;
+}
+
+.dropdown-menu li:hover a {
+  color: #fff !important;
+}
+
+.btn-primary:active {
+  background-color: #d76d6f !important;
+}
+
+.card-header:hover small {
+  display: flex !important;
+}
+
+.card-header:hover small:hover a:hover {
+  text-decoration: underline !important;
+}
+
+.dropdown-menu[data-bs-popper] {
+  left: -33px !important;
+}
+
+.notice {
+  opacity: 0;
+  transition: opacity 1s;
+  position: absolute;
+  background-color: #ffc5c6;
+  border: #9b5051 solid 1px;
+  color: #9b5051;
+  font-size: 0.7em;
+}
+
+.fade-in {
+  opacity: 1;
+}
+
+div.recipe-card {
+  min-height: 6em !important;
+}
+
+.form-switch .form-check-input[checked],
+input[type='checkbox']:checked {
+  background-color: #f87d7f !important;
+  border-color: #f87d7f !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #f87d7f !important;
+  box-shadow: 0 0 0 #f87d7f !important;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #f87d7f !important;
+  --bs-btn-border-color: #f87d7f !important;
+  --bs-btn-hover-bg: #f87d7f !important;
+  --bs-btn-hover-border-color: #f87d7f !important;
+  --bs-btn-active-color: #f87d7f !important;
+  --bs-btn-active-bg: #f87d7f !important;
+  --bs-btn-active-border-color: #f87d7f !important;
+  --bs-btn-disabled-color: #f87d7f !important;
+  --bs-btn-disabled-border-color: #f87d7f !important;
+}

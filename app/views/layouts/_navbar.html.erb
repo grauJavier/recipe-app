@@ -1,0 +1,57 @@
+<div class="bg-light d-flex justify-content-center px-5 border-bottom">
+  <nav class="navbar navbar-expand-lg navbar-light d-flex w-100 body-max-width">
+    <%= image_tag('logo.png', alt: 'Recipe App Logo', size: '50x50', class: 'me-3') %>
+    <ul class="navbar-nav gap-4 flex-row justify-self-start">
+      <li class="nav-item active">
+        <%= link_to "Home", home_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Public Recipes", public_recipe_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "My Recipes", recipes_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Food", foods_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Shopping List", general_shopping_lists_path, class: "nav-link" %>
+      </li>
+    </ul>
+    <div class="justify-self-end ms-auto d-flex align-items-center gap-2">
+      <% if user_signed_in? %>
+        <li class="nav-item dropdown list-unstyled">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= current_user.name %>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li class="w-100 py-1">
+              <%= link_to destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class:"w-100 mx-3 text-secondary" do %>
+                <i class="bi bi-box-arrow-right"></i> Log out
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <%= image_tag("https://i.pravatar.cc/50?img=0", alt: 'Recipe App Logo', size: '50x50', class: 'rounded-circle bg-white border p-1') %>
+      <% end %>
+    </div>
+  </nav>
+</div>
+<div class="w-100 d-flex justify-content-center">
+  <% if notice %>
+    <p class="notice mt-2 py-1 px-2 rounded"><%= notice %></p>
+    <script>
+      document.addEventListener("turbo:load", () => {
+        fadeInOut('.notice');
+      });
+    </script>
+  <% end %>
+  <% if alert %>
+    <p class="notice mt-2 py-1 px-2 rounded"><%= alert %></p>
+    <script>
+      document.addEventListener("turbo:load", () => {
+        fadeInOut('.notice');
+      });
+    </script>
+  <% end %>
+</div>
